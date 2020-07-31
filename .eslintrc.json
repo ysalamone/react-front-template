@@ -6,7 +6,8 @@
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
   ],
   "rules": {
     // --- Typescript ---
@@ -20,8 +21,6 @@
     "@typescript-eslint/no-empty-function": ["off"],
     "@typescript-eslint/no-explicit-any": ["off"],
     "@typescript-eslint/semi": ["error"],
-    "@typescript-eslint/space-before-function-paren": ["error"],
-    // We need to disable default ESLint rules that we override
     "indent": "off",
     "no-empty-function": "off",
     "semi": "off",
