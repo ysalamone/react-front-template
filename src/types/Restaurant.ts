@@ -12,6 +12,7 @@ export type TRestaurant = {
 
 export type TComment = {
     text: string,
+    date: string,
     author: string,
     rating: number
 };
