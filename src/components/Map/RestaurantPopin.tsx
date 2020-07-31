@@ -1,7 +1,8 @@
 import React from 'react';
-import { TRestaurant } from '../../types/Restaurant';
 import styled from 'styled-components';
+import { TRestaurant } from '../../types/Restaurant';
 import Stars from './Stars';
+import Comment from './Comment';
 
 interface IProps {
     restaurant: TRestaurant
@@ -15,6 +16,8 @@ const StyledRestaurantContainer = styled.div`
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+    max-height: 300px;
+    overflow: auto;
 `;
 
 const StyledContent = styled.div`
@@ -23,7 +26,13 @@ const StyledContent = styled.div`
 
 const StyledTitle = styled.span`
     font-weight: bold;
+    font-size: 1rem;
     margin-right: 10px;
+`;
+
+const StyledDescription = styled.p`
+    font-weight: 400;
+    font-size: 0.8rem;
 `;
 
 const StyledImg = styled.img`
@@ -32,7 +41,7 @@ const StyledImg = styled.img`
 `;
 
 const RestaurantPopin = ({ restaurant }: IProps): JSX.Element => {
-    const { name, img, averageRating } = restaurant;
+    const { name, img, averageRating, description, comments } = restaurant;
 
     return (<StyledRestaurantContainer>
         {img && <StyledImg src={img} />}
@@ -41,6 +50,14 @@ const RestaurantPopin = ({ restaurant }: IProps): JSX.Element => {
                 {averageRating && <Stars rating={averageRating} />}
                 {name}
             </StyledTitle>
+            <StyledDescription>
+                {description}
+            </StyledDescription>
+            {comments && comments.map(comment => (
+                <div key={`${comment.author}-${name}`}>
+                    <Comment comment={comment} />
+                </div>
+            ))}
         </StyledContent>
     </StyledRestaurantContainer>);
 };

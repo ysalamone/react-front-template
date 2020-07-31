@@ -7,7 +7,7 @@ import Map from './components/Map/Map';
 
 const GlobalStyles = createGlobalStyle`
     body {
-        background: #ccc;
+        background: #dfdfdf;
     }
 
     .leaflet-popup-content-wrapper {
