@@ -9,6 +9,17 @@ const GlobalStyles = createGlobalStyle`
     body {
         background: #ccc;
     }
+
+    .leaflet-popup-content-wrapper {
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .leaflet-popup-content {
+        margin: 0;
+    }
 `;
 
 interface IProps {
