@@ -1,34 +1,10 @@
 import React from 'react';
 import { TComment } from '../../types/Restaurant';
-import styled from 'styled-components';
+import { StyledContainer, StyledHeader } from '../../styles/comment.style';
 
 interface IProps {
     comment: TComment
 }
-
-const StyledContainer = styled.div`
-    padding: 10px;
-    background: #dfdfdf;
-    margin-bottom: 5px;
-`;
-
-
-const StyledHeader = styled.div`
-    display: flex;
-    margin-bottom: 5px;
-
-    .author {
-        font-weight: bold;
-        margin-right: 5px;
-    }
-    .date {
-        font-weight: 100;
-    }
-
-    .rating {
-        margin-left: auto;
-    }
-`;
 
 const Comment = ({ comment }: IProps): JSX.Element => (
     <StyledContainer>

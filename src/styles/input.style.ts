@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from './colors.style';
+import { fonts } from './fonts.style';
 
 export const STYLED_INPUT_HEIGHT = 50;
 export const INPUT_TOP_POSITION = 25;
@@ -26,6 +27,7 @@ export const StyledInput = styled.input<TStyledInput>`
     margin: ${INPUT_TOP_POSITION}px auto 0 auto;
     background: ${colors.grey};
     display: block;
+    font-family: ${fonts.text};
     color: white;
     outline: none;
     transition: ${(props): string => props.withSuggestion ? transitionWhenFocused : transition};
