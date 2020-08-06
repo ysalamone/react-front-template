@@ -1,22 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledInput } from '../../styles/input.style';
 
 interface IProps {
     onChange: (e: any) => void;
+    value: string;
+    withSuggestion: boolean;
 }
 
-const StyledInput = styled.input`
-    padding: 10px 25px;
-    border: none;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    border-radius: 5px;
-    height: 50px;
-    width: 100%;
-`;
-
-const Input = ({ onChange }: IProps): JSX.Element => {
+const Input = ({ onChange, value, withSuggestion }: IProps): JSX.Element => {
     return (
-        <StyledInput onChange={onChange} type='text' />
+        <StyledInput
+            onChange={onChange}
+            type='text'
+            value={value}
+            placeholder='Rechercher une ville'
+            withSuggestion={withSuggestion}
+        />
     );
 };
 

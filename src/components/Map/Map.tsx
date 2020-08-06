@@ -5,23 +5,26 @@ import styled from 'styled-components';
 import simulatedRestaurants from '../../../restaurants';
 
 interface IProps {
-    city: TCity
+    city?: TCity
 }
-const CONTAINER_HEIGHT = 400;
+
 
 const StyledMapContainer = styled.div`
-    width: 80%;
-    height: ${CONTAINER_HEIGHT}px;
-    margin: 35px auto 0 auto;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-
+    position: relative;
+    z-index: 0;
+    
     .leaflet-container {
-        height: ${CONTAINER_HEIGHT}px;
+        height: 100%;
     }
 `;
 
+const defaultPosition = [48.85341, 2.3488];
 const Map = ({ city }: IProps): JSX.Element => {
-    const position = [parseFloat(city.latlng.lat), parseFloat(city.latlng.lng)];
+    const position = city ? [parseFloat(city.latlng.lat), parseFloat(city.latlng.lng)] : defaultPosition;
     const [restaurants, setRestaurants] = useState([]);
 
     useEffect(() => {

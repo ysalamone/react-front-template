@@ -8,12 +8,13 @@ interface IProps {
 }
 
 const StyledCity = styled.button`
-    padding: 5px 25px;
+    padding: 15px 25px;
     border: none;
     background: none;
     cursor: pointer;
     display: block;
     width: 100%;
+    font-size: 18px;
 
     &:hover {
         background: #eee;

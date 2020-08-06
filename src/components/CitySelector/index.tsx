@@ -4,6 +4,7 @@ import Input from './Input';
 import City from './City';
 import { TCity } from '../../types/City';
 import AnimatedPanel from '../AnimatedPanel';
+import { StyledCitySelectorContainer } from '../../styles/citySelector.style';
 
 interface IProps {
     onSelect: (city: TCity) => void;
@@ -73,15 +74,17 @@ class CitySelector extends React.Component<IProps, IState> {
             this.closeSuggestionPanel();
             this.setState({
                 matchingCities: [],
-            })
+                value: ''
+            });
             return;
         }
 
-        const matchingCities: TCity[] = this.state.cities.filter(city => city.name.includes(value));
+        const matchingCities: TCity[] = this.state.cities.filter(city => city.name.toLowerCase().includes(value.toLowerCase()));
 
         this.setState({
             matchingCities,
-        })
+            value
+        });
 
         this.openSuggestionPanel();
     };
@@ -89,6 +92,9 @@ class CitySelector extends React.Component<IProps, IState> {
     onSelectCity = (cityId: string): void => {
         const city: TCity = this.state.cities.find(city => city._id === cityId);
         if (city) {
+            this.setState({
+                value: city.name
+            });
             this.props.onSelect(city);
             this.closeSuggestionPanel();
         }
@@ -100,16 +106,16 @@ class CitySelector extends React.Component<IProps, IState> {
             return <div>Erreur lors de la récupération des villes</div>;
         } else {
             return (
-                <>
-                    <Input onChange={this.handleChange} />
+                <StyledCitySelectorContainer>
+                    <Input onChange={this.handleChange} value={this.state.value} withSuggestion={this.state.isPanelOpened} />
                     <AnimatedPanel isOpened={this.state.isPanelOpened}>
                         <>
-                            {this.state.matchingCities.map((city: TCity): JSX.Element =>
+                            {this.state.isPanelOpened && this.state.matchingCities.map((city: TCity): JSX.Element =>
                                 <City key={city._id} city={city} onSelect={this.onSelectCity} />
                             )}
                         </>
                     </AnimatedPanel>
-                </>
+                </StyledCitySelectorContainer>
             );
         }
     }

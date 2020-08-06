@@ -7,7 +7,9 @@ import Map from './components/Map/Map';
 
 const GlobalStyles = createGlobalStyle`
     body {
-        background: #dfdfdf;
+        background: #fefefe;
+        margin: 0;
+        font-size: 16px;
     }
 
     .leaflet-popup-content-wrapper {
@@ -48,9 +50,8 @@ class EntryPoint extends React.Component<IProps, IState> {
         return (
             <>
                 <GlobalStyles />
+                <Map city={this.state.selectedCity} />
                 <CitySelector onSelect={this.onSelect} />
-
-                {this.state.selectedCity && <Map city={this.state.selectedCity} />}
             </>
         );
     }
