@@ -70,6 +70,7 @@ export const SBarathonAuthor = styled.span`
 `;
 
 export const SBarathonParcours = styled.div`
+    margin-top: 1.33rem;
     padding: 10px;
     color: ${colors.darkGrey};
     background: ${colors.white};
