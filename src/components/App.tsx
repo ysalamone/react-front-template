@@ -53,14 +53,16 @@ const App = (): JSX.Element => {
             <Section>
                 <BarathonForm pubs={pubs} />
             </Section>
-            <div>
-                <h1>Barathons créés par la communauté</h1>
-                {barathons.map((barathon: IBarathon) => {
-                    const lesPubs = pubsDuBarathon(barathon);
-                    // seuls les barathons avec au moins 1 étape sont retournés
-                    return lesPubs && <BarathonThumbnail key={barathon._id} barathon={barathon} pubs={lesPubs} />;
-                })}
-            </div>
+            <Section>
+                <>
+                    <h1>Barathons créés par la communauté</h1>
+                    {barathons.map((barathon: IBarathon) => {
+                        const lesPubs = pubsDuBarathon(barathon);
+                        // seuls les barathons avec au moins 1 étape sont retournés
+                        return lesPubs && <BarathonThumbnail key={barathon._id} barathon={barathon} pubs={lesPubs} />;
+                    })}
+                </>
+            </Section>
         </SContainer>
     );
 };

@@ -3,6 +3,8 @@ import chroma from 'chroma-js';
 import { fonts } from "./fonts";
 import { colors } from "./colors";
 
+const MAX_WIDTH = '800px';
+
 // styles globaux
 export const GlobalStyles = createGlobalStyle`
     body {
@@ -46,10 +48,15 @@ export const SBarathonThumbnail = styled.div`
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
-    margin-bottom: 1.33rem;
+    margin: 1.33rem auto;
     border-radius: 4px;
     overflow: auto;
     background: ${chroma(colors.veryDarkGrey).alpha(0.5).css()};
+`;
+
+export const SBarathonContent = styled.div`
+    padding: 1.33rem;
+    box-sizing: border-box;
 `;
 
 export const SBarathonName = styled.span`
@@ -63,7 +70,6 @@ export const SBarathonAuthor = styled.span`
 `;
 
 export const SBarathonParcours = styled.div`
-    margin-top: 1rem;
     padding: 10px;
     color: ${colors.darkGrey};
     background: ${colors.white};
@@ -99,7 +105,7 @@ export const SInput = styled.input<any>`
 
 // container de carte leaflet
 export const SMapContainer = styled.div`
-        margin-bottom: 1.33rem;
+        margin: 1.33rem;
 `;
 
 // vignette de pub (popups carte)
@@ -147,7 +153,7 @@ export const SPubFlexButtons = styled.div`
 // section à fond gris
 export const SSection = styled.div`
     border-radius: 4px;
-    max-width: 800px;
+    max-width: ${MAX_WIDTH};
     padding: 15px;
     background-color: ${colors.grey};
     margin: 30px auto;
