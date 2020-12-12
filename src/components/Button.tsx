@@ -2,6 +2,7 @@ import React from 'react';
 import chroma from 'chroma-js';
 import styled from 'styled-components';
 import { colors } from '../styles/colors';
+import {fonts} from "../styles/fonts";
 
 interface IProps {
     type: "button" | "submit" | "reset";
@@ -24,6 +25,7 @@ const SButton = styled.button`
     color: ${colors.white};
     cursor: pointer;
     filter: drop-shadow(0 2px 4px ${chroma(colors.darkGrey).alpha(0.5).css()});
+    font-family: ${fonts.text};
     font-size: 1.25rem;
     flex-grow: 1;
 `;

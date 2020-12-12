@@ -50,7 +50,7 @@ const BarathonForm = ({ pubs }: IProps): JSX.Element => {
     };
 
     const removePub = (id: string): void => {
-        setSelectedPubs(pubs.filter((pub: IPub) => {
+        setSelectedPubs(selectedPubs.filter((pub: IPub) => {
             return pub._id !== id;
         }));
     };
@@ -62,7 +62,7 @@ const BarathonForm = ({ pubs }: IProps): JSX.Element => {
             <Input name="author" type="text" label="Auteur"/>
             <Input name="pubs" type="text" label="Pubs" value={selectedPubs.map((pub: IPub) => pub._id).join(',')} readonly={true} />
             <Button type="button" onClick={removeLastPub}>Remove last</Button>
-            <LeafletMap pubs={pubs} selectedPubs={selectedPubs} addPub={addPub} removePub={removePub} />
+            <LeafletMap pubs={pubs} selectedPubs={selectedPubs} w={600} h={400} addPub={addPub} removePub={removePub} />
             <Button type="submit">Soumettre</Button>
         </SForm>
     );

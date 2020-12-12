@@ -8,8 +8,8 @@ import { IPub } from '../types/api';
 
 interface IProps {
     pub: IPub;
-    addPub: (id: string) => void;
-    removePub: (id: string) => void;
+    addPub?: (id: string) => void;
+    removePub?: (id: string) => void;
 }
 
 const PubThumbnail = ({ pub, addPub, removePub }: IProps): JSX.Element => {
@@ -23,10 +23,11 @@ const PubThumbnail = ({ pub, addPub, removePub }: IProps): JSX.Element => {
                     <SDescription>{description === description.slice(0,80) ? description.slice(0,80) : description.slice(0,80) + '...'}</SDescription>
                 </SContent>
             </SThumbnail>
+            { addPub && removePub &&
             <SFlex>
                 <Button type="button" onClick={(): void => { addPub(_id); }}>Ajouter</Button>
                 <Button type="button" onClick={(): void => { removePub(_id); }}>Retirer</Button>
-            </SFlex>
+            </SFlex> }
         </>
     );
 };

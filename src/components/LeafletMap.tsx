@@ -9,14 +9,16 @@ import { LatLngExpression } from "leaflet";
 interface IProps {
     pubs: IPub[];
     selectedPubs: IPub[];
-    addPub: (id: string) => void;
-    removePub: (id: string) => void;
+    w: number;
+    h: number;
+    addPub?: (id: string) => void;
+    removePub?: (id: string) => void;
 }
 
 const TILE_LAYER = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
 const ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-const LeafletMap = ({ pubs, selectedPubs, addPub, removePub }: IProps): JSX.Element => {
+const LeafletMap = ({ pubs, selectedPubs, w, h, addPub, removePub }: IProps): JSX.Element => {
 
     const polyline: LatLngExpression[] = selectedPubs.map((pub: IPub) => {
         return [pub.latlng.lat, pub.latlng.lng];
@@ -28,8 +30,8 @@ const LeafletMap = ({ pubs, selectedPubs, addPub, removePub }: IProps): JSX.Elem
                 center={[44.5618, 6.0825]}
                 zoom={14}
                 style={{
-                    width: 600,
-                    height: 400
+                    width: w,
+                    height: h
                 }}
             >
                 <TileLayer
@@ -39,7 +41,7 @@ const LeafletMap = ({ pubs, selectedPubs, addPub, removePub }: IProps): JSX.Elem
                 {pubs.map((pub: IPub) =>{
                     return (
                         <Marker
-                            key={pub._id}
+                            key={pub._id + Math.random() }
                             position={[pub.latlng.lat, pub.latlng.lng]}>
                             <Popup>
                                 <PubThumbnail
