@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import Input from "./Input";
+import Input from './Input';
 import Button from './Button';
 import LeafletMap from './LeafletMap';
 import { IPub } from '../types/api';
+import { SForm } from '../styles/mainStyle';
 
 interface IProps {
     pubs: IPub[];
@@ -13,7 +13,7 @@ const BarathonForm = ({ pubs }: IProps): JSX.Element => {
     const [selectedPubs, setSelectedPubs] = useState<IPub[]>([]);
 
     const handleSubmit = async (e: any): Promise<void> => {
-        // evite le rechargement de la page au submit
+        // évite le rechargement de la page au submit
         e.preventDefault();
         const checkpoints = e.target.elements.namedItem('pubs').value.split(',');
 
@@ -58,20 +58,14 @@ const BarathonForm = ({ pubs }: IProps): JSX.Element => {
     return (
         <SForm onSubmit={handleSubmit}>
             <h1>Créer un barathon 🍻</h1>
-            <Input name="name" type="text" label="Nom du barathon"/>
-            <Input name="author" type="text" label="Auteur"/>
-            <Input name="pubs" type="text" label="Pubs" value={selectedPubs.map((pub: IPub) => pub._id).join(',')} readonly={true} />
+            <Input name="name" type="text" placeholder="Nom du barathon"/>
+            <Input name="author" type="text" placeholder="Auteur"/>
+            <Input name="pubs" type="text" placeholder="Pubs" value={selectedPubs.map((pub: IPub) => pub._id).join(',')} readonly={true} />
             <Button type="button" onClick={removeLastPub}>Remove last</Button>
             <LeafletMap pubs={pubs} selectedPubs={selectedPubs} w={600} h={400} addPub={addPub} removePub={removePub} />
             <Button type="submit">Soumettre</Button>
         </SForm>
     );
 };
-
-const SForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
 
 export default BarathonForm;

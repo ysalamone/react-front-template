@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { LatLngExpression } from "leaflet";
 import { IPub } from '../types/api';
 import { colors } from '../styles/colors';
-import PubThumbnail from "./PubThumbnail";
-import { LatLngExpression } from "leaflet";
+import PubThumbnail from './PubThumbnail';
+import { SMapContainer } from '../styles/mainStyle';
 
 interface IProps {
     pubs: IPub[];
@@ -53,20 +53,10 @@ const LeafletMap = ({ pubs, selectedPubs, w, h, addPub, removePub }: IProps): JS
                         </Marker>
                     );
                 })}
-                {polyline.length > 0 && <Polyline positions={polyline} pathOptions={{color: colors.vibrant}}/>}
+                {polyline.length > 0 && <Polyline positions={polyline} pathOptions={{ color: colors.vibrant }}/>}
             </MapContainer>
         </SMapContainer>
     );
 };
-
-const SMapContainer = styled.div`
-        margin-bottom: 1.33rem;
-`;
-
-const SPopup = styled.span`
-    background-color: ${colors.lightGrey};
-    font-size: 1.2em;
-    padding: 10px;
-`;
 
 export default LeafletMap;

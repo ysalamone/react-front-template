@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { colors } from '../styles/colors';
 import { IPub, IBarathon } from '../types/api';
 import BarathonForm from './BarathonForm';
 import BarathonThumbnail from './BarathonThumbnail';
 import Section from './Section';
-
-const SContainer = styled.div`
-    background-color: ${colors.darkGrey};
-    padding: 15px;
-`;
+import { SContainer } from '../styles/mainStyle';
 
 const App = (): JSX.Element => {
     // Déclaration d'une nouvelle variable d'état interne : pubs
@@ -63,7 +57,6 @@ const App = (): JSX.Element => {
                 <h1>Barathons créés par la communauté</h1>
                 {barathons.map((barathon: IBarathon) => {
                     const lesPubs = pubsDuBarathon(barathon);
-                    // const pubsNames = lesPubs ? lesPubs.map((pub: IPub) => pub.name) : null;
                     // seuls les barathons avec au moins 1 étape sont retournés
                     return lesPubs && <BarathonThumbnail key={barathon._id} barathon={barathon} pubs={lesPubs} />;
                 })}
